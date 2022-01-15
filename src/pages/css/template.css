@@ -1,0 +1,51 @@
+.ant-layout{
+    height: 100%;
+}
+
+.wrapper{
+    width: 100%;
+    max-width: 1400px;
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 15px;
+}
+
+.ant-layout-has-sider{
+    height: auto;
+    flex: 1 0 auto;
+    display: block;
+}
+
+.ant-layout-header, .ant-layout-footer{
+    background: #edf0f3;
+    line-height: 1.2;
+    height: auto;
+    padding: 0;
+}
+
+.content-bx {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    margin-left: 8px;
+}
+
+.ant-layout-sider,
+.ant-breadcrumb,
+.ant-layout-content{
+    margin: 4px 0px;
+    background: #edf0f3;
+    border: 2px solid #ccc;
+    border-radius: 6px; 
+    padding: 15px;    
+}
+
+.ant-layout-sider{
+    padding: 0;
+}
+
+.ant-layout-sider-children{
+    padding: 15px;
+}
+
