@@ -1,5 +1,6 @@
 import { Layout, Breadcrumb } from 'antd';
 import './css/template.css';
+import { Routes, Route,  } from "react-router-dom";
 import HeaderBox from './common/header';
 import FooterBox from './common/footer';
 import SiderBox from './common/sider';
@@ -26,12 +27,16 @@ const Template = () => {
                                 <a href="">Home</a>
                             </Breadcrumb.Item>
                             <Breadcrumb.Item>
-                            <a href="">List</a>
+                                <a href="">List</a>
                             </Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
                         </Breadcrumb>
                         <Content>
-                            <ContentBox />
+                            <Routes>
+                                <Route path="/" element={<ContentBox />}></Route>
+                                <Route path="/catalog"></Route>
+                                <Route path="/about"></Route>
+                            </Routes>    
                         </Content>
                     </div>
                 </div>

@@ -8,3 +8,46 @@
     width: 100%;
 
 }
+
+header .shopcart{ 
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+header .ant-menu{
+    background: none;
+    flex: 1 0 auto;
+    align-items: center;
+}
+
+header form.header-form-search{
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+}
+
+
+header .ant-btn-primary:hover, header .ant-btn-primary:focus{
+    border-color: #ccc;
+    background: #ddd;
+}
+
+.ant-menu-horizontal > .ant-menu-item a:hover {
+    color: #aaa;
+}
+
+.ant-avatar{
+    background: #ccc;
+    color: #fff;
+}

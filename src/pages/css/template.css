@@ -49,3 +49,18 @@
     padding: 15px;
 }
 
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
+.ant-input-search .ant-input:hover, .ant-input-search .ant-input:focus{
+    border-color: #ccc;
+}
+
+.ant-btn-primary{
+    background: none;
+    border-color: #ddd;
+}
+
+.ant-menu{
+    background: none;
+}
+
+
