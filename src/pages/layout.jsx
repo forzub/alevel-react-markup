@@ -6,9 +6,14 @@ import FooterBox from './common/footer';
 import SiderBox from './common/sider';
 import ContentBox from './common/content';
 
+
 const { Header, Footer, Sider, Content } = Layout;
 
 const Template = () => {
+
+
+
+
     return (<>
         <Layout>
             <Header>
@@ -32,11 +37,7 @@ const Template = () => {
                             <Breadcrumb.Item>App</Breadcrumb.Item>
                         </Breadcrumb>
                         <Content>
-                            <Routes>
-                                <Route path="/" element={<ContentBox />}></Route>
-                                <Route path="/catalog"></Route>
-                                <Route path="/about"></Route>
-                            </Routes>    
+  
                         </Content>
                     </div>
                 </div>

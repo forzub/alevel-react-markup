@@ -1,9 +1,10 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import isEmpty from "ramda/src/isEmpty";
 import { useState } from 'react';
-import { Menu } from 'antd';
+import { Button, Menu } from 'antd';
 
 const MyMenu = ({ links = [{}], ...props }) => {
+
   const [current, setCurrent] = useState('main');
   const handleClick = (e) => { setCurrent(e.key); }
 
@@ -12,9 +13,11 @@ const MyMenu = ({ links = [{}], ...props }) => {
   return (
 
     <Menu onClick={handleClick} selectedKeys={[current]} {...props}>
-      
+
       {links.map((el, index) =>
-      <Menu.Item key={`${index}`} ><Link to={el.path}>{el.title}</Link></Menu.Item>
+        <Menu.Item key={`${index}`} >
+          <NavLink to={el.path}>{el.title}</NavLink>
+        </Menu.Item>
       )}
 
     </Menu>
@@ -23,5 +26,3 @@ const MyMenu = ({ links = [{}], ...props }) => {
 
 export default MyMenu;
 
-// {/* {!isEmpty(links) ? links.map((el, index) =><Menu.Item key={index} ><Link to={el.path}>{el.title}</Link></Menu.Item>) : null} */}
-//      {/* { links.map((el, index) =><Menu.Item key={`${index}`} ><Link to={el.path}>{el.title}</Link></Menu.Item>)} */}

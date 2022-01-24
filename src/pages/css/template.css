@@ -1,5 +1,5 @@
 .ant-layout{
-    height: 100%;
+    min-height: 100%;
 }
 
 .wrapper{
@@ -29,6 +29,16 @@
     flex: 1 0 auto;
     flex-direction: column;
     margin-left: 8px;
+    position: relative;
+}
+
+.mainpage_wrp{
+    position: absolute;
+    top: 0;bottom: 0;
+    left: 0;width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 
 .ant-layout-sider,
@@ -55,12 +65,24 @@
 }
 
 .ant-btn-primary{
-    background: none;
+    background: #ddd;
     border-color: #ddd;
 }
 
 .ant-menu{
     background: none;
+}
+
+.ant-layout-header, 
+.ant-layout-footer{
+    background: none;
+}
+
+.ant-menu-horizontal,
+.ant-menu-inline, 
+.ant-menu-vertical, 
+.ant-menu-vertical-left{
+    border:none;
 }
 
 

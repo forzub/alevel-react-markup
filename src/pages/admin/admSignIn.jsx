@@ -1,7 +1,19 @@
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useLocation, useNavigate} from 'react-router-dom';
+import { useAuth } from '../../components/hooc/useAuth';
 import '../css/signin.css';
 
-const SingIn = () => {
+
+
+const AdmSingIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // console.log(useAuth());
+
+  const {singin} = useAuth();
+  const fromPage = location.state?.from?.pathname || '/' ;
+
 
   const validateMessages = {
     required: '${label} is required!',
@@ -14,12 +26,15 @@ const SingIn = () => {
     },
   };
 
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+    singin( values, () => navigate(fromPage, {replace: true}) );
+    // dispatch(authAdminAutorization(values));
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    singin(errorInfo.values, () => navigate(fromPage), {replace: true});
+    // console.log('Failed:', errorInfo);
   };
 
 
@@ -50,9 +65,9 @@ const SingIn = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+      {/* <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
         <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit" loading={false}>
@@ -64,4 +79,4 @@ const SingIn = () => {
 
 }
 
-export default SingIn;
+export default AdmSingIn;

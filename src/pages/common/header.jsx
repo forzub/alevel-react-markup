@@ -29,6 +29,7 @@ const HeaderBox = () => {
                     enterButton="Search"
                     size="large"
                     onSearch={onSearch}
+                    
                 />
             </form>
             <div className="icons-list shopcart">

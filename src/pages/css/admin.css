@@ -1,0 +1,109 @@
+.wrapper{
+  align-items: stretch;
+}
+
+.ant-layout, .ant-layout-sider, .ant-breadcrumb, .ant-layout-content{
+  background: #fff;
+}
+
+.ant-tabs{
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.ant-tabs-content-holder,
+.ant-layout.ant-layout-has-sider{
+  display: flex;
+  align-items: stretch;
+}
+
+.ant-layout.ant-layout-has-sider{
+  min-height: 100%;
+}
+
+.ant-btn-primary{
+  color:black;
+}
+
+.ant-layout.admin{
+  flex-direction: row;
+}
+
+.ant-menu-title-content{
+  display: flex;
+  align-items: center;
+
+}
+
+.adm-menu-button{
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.anticon svg{
+  max-width: 90%;
+}
+
+.adm-menu-button>span{
+  width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.ant-menu-title-content>a:first-child{
+   flex: 1 0 95px;
+   max-width: 115px;
+    overflow: hidden;
+  }
+.adm-header .wrapper{ 
+   justify-content: flex-end;
+   position: relative;
+   z-index: 1;}
+
+.adm-top-menu{position: absolute; top: 8px;}
+
+.adm-top-menu button{margin-left: 10px;}
+
+.adm-menu-add>span{
+  width: 100%;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adm-menu-add{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  background-color: #eee;
+}
+
+.adm-menu-add button{width: 50%;padding: 2px 0;}
+
+.adm_itm_top_menu{
+  display: flex;
+  justify-content: space-between;
+}
+
+.adm_itm_top_menu button{margin-left: 10px;}
+
+.adm_top-menu_butbx {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ant-btn-group{margin-right: 10px;}
+
+.adm-citm-form-row{
+display: flex;
+}
+
+.adm-citm-form-col{
+  padding: 10px;
+}
