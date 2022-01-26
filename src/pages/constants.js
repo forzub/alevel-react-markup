@@ -39,6 +39,7 @@ export const magazinBase = {
           content: {
             path: '/zveri',
             title: 'Звери',
+            type: 'itm',
             image: '',
             description: 'Млекопитающие или звери (Mammalia)',
             textContent: 'Млекопитающие или звери (Mammalia) — класс позвоночных животных',
@@ -51,6 +52,7 @@ export const magazinBase = {
           content: {
             path: '/pticy',
             title: 'Птицы',
+            type: 'itm',
             image: '',
             description: 'Птицы (Aves)',
             textContent: 'Кроме самих птиц, Вы так же можете заказать их перья. Птицы (Aves) — класс теплокровных яйцекладущих позвоночных животных',
@@ -62,6 +64,7 @@ export const magazinBase = {
           content: {
             path: '/zmei',
             title: 'Змеи',
+            type: 'itm',
             image: '',
             description: 'Змеи (Serpentes)',
             textContent: 'Змеи (Serpentes) — подотряд пресмыкающихся отряда чешуйчатые.',
@@ -73,6 +76,7 @@ export const magazinBase = {
           content: {
             path: '/yasherica',
             title: 'Ящерицы',
+            type: 'itm',
             image: '',
             description: 'Ящерицы (Lacertilia)',
             textContent: 'Ящерицы (Lacertilia) — подотряд отряда чешуйчатых класса пресмыкающихся',
@@ -84,6 +88,7 @@ export const magazinBase = {
           content: {
             path: '/cherepahi',
             title: 'Черепахи',
+            type: 'itm',
             image: '',
             description: 'Черепахи (Testudines)',
             textContent: 'Черепахи (Testudines) — один из четырёх отрядов пресмыкающихся',
@@ -95,6 +100,7 @@ export const magazinBase = {
           content: {
             path: '/cayman',
             title: 'Кайманы',
+            type: 'itm',
             image: '',
             description: 'Кайман (Caiman crocodylus)',
             textContent: 'Небольшой кайман с довольно длинной, суженной спереди мордой',
@@ -106,6 +112,7 @@ export const magazinBase = {
           content: {
             path: '/amfibia',
             title: 'Амфибии',
+            type: 'cat',
             image: '',
             description: 'Земноводные, или амфибии (Amphibia)',
             textContent: 'Земноводные, или амфибии (Amphibia) — класс позвоночных животных',
@@ -115,8 +122,9 @@ export const magazinBase = {
               id: 10,
               parent: 9,
               content: {
-                path: '/zveri2',
-                title: 'Звери2',
+                path: '/amfibki',
+                title: 'Амфибки',
+                type: 'itm',
                 image: '',
                 description: 'Млекопитающие или звери (Mammalia)',
                 textContent: 'Млекопитающие или звери (Mammalia) — класс позвоночных животных',

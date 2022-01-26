@@ -1,0 +1,33 @@
+GET - чтение данных
+https://alevel-finish-base-default-rtdb.firebaseio.com/.json
+
+https://a-level-react-todo-default-rtdb.europe-west1.firebasedatabase.app/users/.json
+request:
+{
+    "-MrSfyhPm1n6-bbwnsGW": {
+        "email": "vasiliy@import.ua",
+        "name": "Vasian"
+    },
+    "-MrSgDHKd0ZB1FzjCLsh": {
+        "email": "vasiliy@import.ua",
+        "name": "Vasian"
+    },
+    "-MrThjy5GYoDx-p7qyfQ": {
+        "email": "vasiliy@import.ua",
+        "name": "Vasian"
+    },
+    "-MrThrBCSWd4WKTzvvyO": {
+        "email": "sarumian@import.ua",
+        "id": 7,
+        "name": "Sarumian"
+    }
+}
+
+https://a-level-react-todo-default-rtdb.europe-west1.firebasedatabase.app/users/-MrSfyhPm1n6-bbwnsGW/email/.json
+request:
+"vasiliy@import.ua"
+
+error:
+{
+    "error": "Permission denied"
+}
