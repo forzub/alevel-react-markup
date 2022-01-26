@@ -1,0 +1,5 @@
+https://cloud.google.com/storage/docs/json_api/
+
+https://firebase.google.com/docs/storage/web/upload-files
+
+https://stackoverflow.com/questions/37631158/uploading-files-to-firebase-storage-using-rest-api

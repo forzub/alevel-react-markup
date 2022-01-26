@@ -1,0 +1,135 @@
+﻿источник - https://firebase.google.com/docs/reference/rest/database
+
+________________________
+
+GET - чтение данных
+
+
+https://alevel-finish-base-default-rtdb.firebaseio.com/.json
+
+
+
+https://a-level-react-todo-default-rtdb.europe-west1.firebasedatabase.app/users/.json
+
+
+request:
+{
+
+    "-MrSfyhPm1n6-bbwnsGW": {
+
+        "email": "vasiliy@import.ua",
+
+        "name": "Vasian"
+    },
+
+    "-MrSgDHKd0ZB1FzjCLsh": {
+
+        "email": "vasiliy@import.ua",
+
+        "name": "Vasian"
+},
+
+    "-MrThjy5GYoDx-p7qyfQ": {
+
+        "email": "vasiliy@import.ua",
+
+        "name": "Vasian"
+    },
+
+    "-MrThrBCSWd4WKTzvvyO": {
+ 
+       "email": "sarumian@import.ua",
+
+        "id": 7,
+
+        "name": "Sarumian"
+
+    }
+}
+
+
+
+https://a-level-react-todo-default-rtdb.europe-west1.firebasedatabase.app/users/-MrSfyhPm1n6-bbwnsGW/email/.json
+
+
+request:
+
+	"vasiliy@import.ua"
+
+
+error:
+
+	{"error": "Permission denied"
+}
+
+________________________
+
+Authenticate with an access token:
+https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?access_token=<ACCESS_TOKEN>
+
+Authenticate with an ID token:
+https://<DATABASE_NAME>.firebaseio.com/users/ada/name.json?auth=<ID_TOKEN>
+
+
+________________________
+
+PUT - запись данных
+
+{ "first": "Jack", "last": "Sparrow" }
+
+https://[PROJECT_ID].firebaseio.com/users/jack/name.json
+Успешный запрос обозначается 200 OK код состояния HTTP. Ответ содержит данные , указанные в PUT запросе.
+
+________________________
+
+POST - отправка данных
+
+https://[PROJECT_ID].firebaseio.com/message_list.json
+
+{"user_id" : "jack", "text" : "Ahoy!"}
+
+Успешный запрос обозначается 200 OK код состояния HTTP. Ответ содержит имя ребенка новых данных , указанных в POST запросе.
+
+________________________
+
+PATCH Обновление данных
+
+https://[PROJECT_ID].firebaseio.com/users/jack/name/.json
+
+'{"last":"Jones"}'
+
+Успешный запрос обозначается 200 OK код состояния HTTP. Ответ содержит данные , указанные в PATCH запросе.
+
+
+________________________
+
+DELETE Удаление данных
+
+https://[PROJECT_ID].firebaseio.com/users/jack/name/last.json
+
+________________________
+
+браузера , который не поддерживает предыдущие методы:
+вы можете переопределить метод запроса, сделав POST запрос и установив свой метод с помощью X-HTTP-Method-Override заголовка запроса 
+или использовать x-http-method-override параметр запроса
+
+header:
+X-HTTP-Method-Override: DELETE
+
+https://[PROJECT_ID].firebaseio.com/users/jack/name/last.json
+
+или 
+
+https://[PROJECT_ID].firebaseio.com/users/jack/name/last.json?x-http-method-override=DELETE
+
+________________________
+
+Параметры запроса
+
+access_token
+https://[PROJECT_ID].firebaseio/users/jack/name.json?access_token=CREDENTIAL
+
+Поддерживается всеми типами запросов. Аутентифицирует этот запрос, чтобы разрешить доступ к данным, защищенным правилами базы данных
+
+
+
