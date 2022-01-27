@@ -143,3 +143,7 @@ export const users = {
 
 
 }
+
+
+export const STORAGE_URL = '/alevel-finish-base.appspot.com';
+export const FBASE_URL = `https://firebasestorage.googleapis.com/v0/b${STORAGE_URL}/o`;

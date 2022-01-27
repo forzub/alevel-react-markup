@@ -1,5 +1,16 @@
-https://cloud.google.com/storage/docs/json_api/
+запостить:
 
-https://firebase.google.com/docs/storage/web/upload-files
+https://firebasestorage.googleapis.com/v0/b/[STORAGE_NAME]/o?name=[FILE_NAME_WITH_EXTENSION]
+method POST
 
-https://stackoverflow.com/questions/37631158/uploading-files-to-firebase-storage-using-rest-api
+
+открыть:
+
+firebasestorage.googleapis.com/v0/b/[STORAGE_NAME]/o/[IMAGE_NAME]?alt=media
+method GET
+
+
+удалить:
+
+https://firebasestorage.googleapis.com/v0/b/alevel-finish-base.appspot.com/o/[file-name].jpg
+method DELETE
