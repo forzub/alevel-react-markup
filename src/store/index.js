@@ -3,13 +3,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { reducer as admReducer } from './admin';
 import { reducer as magazinReducer } from './magazin';
+import { reducer as elementsReducer } from './elements';
 
 
 
 const rootReducer = combineReducers(
   {
     admin : admReducer,
-    magazin: magazinReducer
+    magazin: magazinReducer,
+    element: elementsReducer,
   }
 ); 
 

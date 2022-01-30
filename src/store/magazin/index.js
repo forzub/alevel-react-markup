@@ -7,5 +7,6 @@ export {
     magazinLoadBaseFromServer,
     magazinBase_Update,
     magazinIncCurrentId,
+    magazinBaseUpdate
 } from './actions';
 

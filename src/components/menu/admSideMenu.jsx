@@ -37,8 +37,8 @@ const AdmSideMenu = ({ links = [{}], callBackFuncs, parent, ...props }) => {
 
       {links.map((el) =>
         <Menu.Item key={`${el.id}`} >
-          <Link to={`edit/${el.id}${el.content.path}`}>{el.content.title}</Link>
-          {('items' in el) && (el.content.type === 'cat') ?
+          <Link to={`edit/${el.id}${el.content?.path}`}>{el.content?.title}</Link>
+          {('items' in el) && (el.content?.type === 'cat') ?
             <Button
               className="adm-menu-button adm_enter_button"
               onClick={() => { callBackFuncs.adm_enter(`edit/${el.id}/${el.id}`, el.id); }}

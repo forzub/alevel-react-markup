@@ -13,22 +13,32 @@ import ReactDOM from 'react-dom';
 import AdmIndexC from './pages/admin/admCIndex';
 import AdmCMain from './pages/admin/admCMain';
 import AdmCItems from './pages/admin/admCItems';
+import { Spin, Alert } from 'antd';
+import { useSelector } from 'react-redux';
+import StartContent from './pages/common/startContent';
 
 
 function App() {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const showSpiner = useSelector(store => store.element.spinerLoading);
+  const isBase = useSelector(store => store.magazin.isBaseLoaded);
+
+  //console.log(isBase)
 
   useEffect(
     () => {
-      dispatch(magazinLoadBaseFromServer(magazinBase));
+      dispatch( magazinLoadBaseFromServer() );
+      // dispatch(magazinLoadBaseFromServer(magazinBase));
     }, []
   );
 
   return (
     <>
-
+    {
+      isBase ? 
+      <>
       <Routes>
         <Route path='/' element={<LeyOut />} />
         <Route path='/*' element={<PageNotFound />} />
@@ -45,11 +55,25 @@ function App() {
           <Route path='edit/:id/:path' element={<AdmCItems />} />
         </Route>
       </Routes>
+      </>
+      : <StartContent />
+    }
 
-      {ReactDOM.createPortal(
-        <h1>Modal</h1>,
+
+      { showSpiner ?
+      ReactDOM.createPortal(
+        <div className="spiner-bx">
+          <Spin tip="Loading...">
+            <Alert
+              message="Alert message title"
+              description="Further details about the context of this alert."
+              type="info"
+            />
+          </Spin>
+          </div>,
         document.getElementById('modal')
-      )}
+      ) : null
+      }
 
     </>
   );

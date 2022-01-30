@@ -1,5 +1,11 @@
 // magazin
 
+import { message } from "antd";
+import { updateRuntime } from "../../utils/udateRuntime";
+import { admSetCurrentUser } from "../admin";
+import { elemSpinerLoadingToggle } from "../elements";
+import { RUNTIME_URL } from '../../pages/constants';
+
 const actions = Object.freeze(
     {
         MAGAZIN_LOAD_BASE: 'magazin/load_base',
@@ -9,20 +15,28 @@ const actions = Object.freeze(
     }
 );
 
-const magazinLoadBase = (payload) => ({type: actions.MAGAZIN_LOAD_BASE, payload});
-const magazinSetIsBase = (payload) => ({type: actions.MAGAZIN_SET_ISBASE, payload});
-const magazinIncCurrentId = () => ({type: actions.MAGAZAN_INC_CURRENT_ID});
-const magazinBaseUpdate = (payload) => ({type: actions.MAGAZIN_BASE_UPDATE, payload});
+const magazinLoadBase = (payload) => ({ type: actions.MAGAZIN_LOAD_BASE, payload });
+const magazinSetIsBase = (payload) => ({ type: actions.MAGAZIN_SET_ISBASE, payload });
+const magazinIncCurrentId = () => ({ type: actions.MAGAZAN_INC_CURRENT_ID });
+const magazinBaseUpdate = (payload) => ({ type: actions.MAGAZIN_BASE_UPDATE, payload });
 
-const magazinLoadBaseFromServer = (payload) => (dispatch, getState) => {
-    
-    dispatch(magazinLoadBase(payload));
-    dispatch(magazinSetIsBase(true))
+const magazinLoadBaseFromServer = () => (dispatch, getState) => {
+    dispatch(elemSpinerLoadingToggle())
+    fetch(RUNTIME_URL)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            dispatch(magazinLoadBase(data));
+            dispatch(magazinSetIsBase(true));
+        })
+        .catch(err => console.log(err))
+        .finally(
+            dispatch(elemSpinerLoadingToggle())
+        );
 }
 
 const magazinBase_Update = (payload) => (dispatch, getState) => {
-    console.log(payload);
-    dispatch( magazinBaseUpdate(payload) );
+    updateRuntime(payload, dispatch, getState);
 }
 
 export {
@@ -32,4 +46,5 @@ export {
     magazinLoadBaseFromServer,
     magazinBase_Update,
     magazinIncCurrentId,
+    magazinBaseUpdate,
 };

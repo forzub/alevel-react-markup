@@ -6,5 +6,7 @@ export {
   setIsInputModalVisible,
   admSetRootId,
   admSetNewItemRoot,
+  admSetFormsFields,
+  admSetCurrentUser,
 } from './actions';
 

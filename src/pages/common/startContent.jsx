@@ -4,12 +4,12 @@ import logo from '../../img/logo.svg';
 
 
 
-const AdmIndexC = () => {
+const StartContent = () => {
 
   return (
     <> <div className="mainpage_wrp">
       <Typography style={{textAlign: 'center', width: '100%', opacity:'0.5'}}>
-        <Title> HELL-МИНКО </Title>
+        <Title> Животненькие </Title>
       </Typography>
       <Image width={200} src={logo} preview={false} />
     </div>
@@ -17,4 +17,4 @@ const AdmIndexC = () => {
   );
 }
 
-export default AdmIndexC;
+export default StartContent;

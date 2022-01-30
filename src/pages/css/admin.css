@@ -107,3 +107,32 @@ display: flex;
 .adm-citm-form-col{
   padding: 10px;
 }
+
+form#admin_contentCItm{
+  display: flex;
+  flex-wrap: wrap;
+}
+.adm-citm-form-row{
+  display: flex;
+  flex: 1 0 100%;
+  margin-bottom: 20px;
+  padding: 20px 0;
+  border: 1px solid #ccc;
+}
+.adm-citm-form-col{
+  flex: 0 0 50%;
+  padding: 0 20px;
+  
+}
+
+.adm-citm-form-col + .adm-citm-form-col{
+  border-left: 1px solid #ccc;
+}
+
+.adm-itm-text-cont{
+  width: 100%;
+}
+
+.itm-text-cont{
+  padding: 20px;
+}
