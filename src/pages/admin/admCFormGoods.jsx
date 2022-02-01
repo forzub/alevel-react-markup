@@ -3,31 +3,15 @@ import UploadImgs from '../../components/uploadImgs';
 
 import DynamicFields from '../../components/dynamicFields';
 import { useSelector } from 'react-redux';
-
+import { validateMessages, onFinishFailed } from './admCFormsUtils';
 
 const { TextArea } = Input;
 
-const AdmCFormItm = ({ props, callbacks } ) => {
+const AdmCFormGoods = ({ props, callbacks } ) => {
 
   const admin_fields = useSelector((store) => store.admin);
 
-
-  const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-      text: null,
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
-  };
  
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
 
   return (<>
     <Form
@@ -65,7 +49,6 @@ const AdmCFormItm = ({ props, callbacks } ) => {
           <Form.Item
             name='title'
             label="Титул"
-            // initialValue={titulVal}
             rules={[
               {
                 required: true,
@@ -100,7 +83,8 @@ const AdmCFormItm = ({ props, callbacks } ) => {
 
         <div className="adm-citm-form-col">
           <UploadImgs
-            imagesList={admin_fields.content_image}
+            adminImgList={admin_fields.content_image}
+            target_key={'content_image'}
             maxCount={4}
             onUpdateImageList={callbacks.uploadUpdateImage}
           />
@@ -145,4 +129,4 @@ const AdmCFormItm = ({ props, callbacks } ) => {
   </>);
 }
 
-export default AdmCFormItm;
+export default AdmCFormGoods;

@@ -38,7 +38,7 @@ const AdmSideMenu = ({ links = [{}], callBackFuncs, parent, ...props }) => {
       {links.map((el) =>
         <Menu.Item key={`${el.id}`} >
           <Link to={`edit/${el.id}${el.content?.path}`}>{el.content?.title}</Link>
-          {('items' in el) && (el.content?.type === 'cat') ?
+          {(('items' in el) && (el.items)) && (el.content?.type === 'cat') ?
             <Button
               className="adm-menu-button adm_enter_button"
               onClick={() => { callBackFuncs.adm_enter(`edit/${el.id}/${el.id}`, el.id); }}
@@ -47,7 +47,8 @@ const AdmSideMenu = ({ links = [{}], callBackFuncs, parent, ...props }) => {
               <CaretDownOutlined />
             </Button> :
             null}
-          {(!('items' in el) && (el.content.type === 'cat')  ) ?
+            
+          { (!('items' in el) || (!el.items)) &&  (el.content.type === 'cat')  ?
             <Button
               className="adm-menu-button adm_add_button"
               onClick={() => { callBackFuncs.adm_add(el.id); }}

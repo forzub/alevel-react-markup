@@ -63,8 +63,6 @@ const showInputModal = (rootTarget) => {
 }
 
 function admEnterButtonClick(path, id) {
-  // console.log('>>>',path)
-  // console.log('>>>',id)
   navigate(path);
   dispatch(admSetRootId(+id));
 }

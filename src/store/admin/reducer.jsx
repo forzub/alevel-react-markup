@@ -12,14 +12,15 @@ const initState = {
 
   content_title: null,
   content_type: null,
-  content_image: null,
-  content_price: null,
   content_show: null,
-  content_params: null,
   content_description: null,
   content_textContent: null,
+  
+  content_image: null,
+  content_params: null,
+  content_price: null,
+
   content_cat_image: null,
-  content_page_image: null,
 
   save_active: true,
   current_user: null,

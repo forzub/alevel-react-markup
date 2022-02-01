@@ -13,11 +13,12 @@ import { magazinBase_Update } from '../store/magazin';
 
 
 
-const UploadImgs = ({ props, maxCount = 4, onUpdateImageList  }) => {
+const UploadImgs = ({ adminImgList, target_key, props, maxCount = 4, onUpdateImageList  }) => {
 
   const dispatch = useDispatch();
-  const admin_fields = useSelector(store => store.admin);
-  const imagesList = admin_fields?.content_image || [];
+  // const admin_fields = useSelector(store => store.admin);
+  // const imagesList = admin_fields?.content_image || [];
+  const imagesList = adminImgList || [];
 
   const [uploadstate, setUpload] = useState(
     {
@@ -105,7 +106,9 @@ const UploadImgs = ({ props, maxCount = 4, onUpdateImageList  }) => {
           url: `${FBASE_URL}/${filename}?alt=media`,
         });
 
-        dispatch(admSetFormsFields({ content_image: imagesList }));
+        // dispatch(admSetFormsFields({ content_image: imagesList }));
+        
+        dispatch(admSetFormsFields({ [target_key] : imagesList }));
         onUpdateImageList(imagesList);
 
         setUpload({ ...uploadstate, fileList: imagesList });
@@ -141,19 +144,13 @@ const UploadImgs = ({ props, maxCount = 4, onUpdateImageList  }) => {
       .then(data => {
         message.info('Файл удален');  
         
-        console.log('del/ 1 ',componentsData);   
-
         let newImagesList = imagesList.filter(el =>
           el.uid !== componentsData.uid
         );
 
-        console.log('del/ 2 ',newImagesList);  
-
-        // dispatch(admSetFormsFields( { content_image : newImagesList } ) );
-        dispatch(admSetFormsFields( { content_image: newImagesList } ) );
-       
+        // dispatch(admSetFormsFields( { content_image: newImagesList } ) );
+        dispatch(admSetFormsFields( {  [target_key] : newImagesList } ) );
         onUpdateImageList(newImagesList);
-
         setUpload({ ...uploadstate, fileList: newImagesList });
       })
       .catch(error => {
