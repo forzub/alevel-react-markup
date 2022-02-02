@@ -164,11 +164,6 @@ const AdmCItems = () => {
   }
 
 
-
-
-
-
-
   return (<>
     { }
     <div className="adm_itm_top_menu">

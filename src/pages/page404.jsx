@@ -7,7 +7,8 @@ const navigate = useNavigate();
 
 
 const handleClick = () => {
-  navigate(`/admin`, { replace: true });
+  // navigate(`/admin`, { replace: true });
+  navigate(`/`, { replace: true });
 }
 
   return (

@@ -1,7 +1,6 @@
-import LeyOut from './pages/layout';
+import Template from './pages/template';
 import { Routes, Route, useLocation, } from "react-router-dom";
 import { useEffect } from 'react';
-import { magazinBase } from './pages/constants';
 import { magazinLoadBaseFromServer } from './store/magazin';
 import { useDispatch } from 'react-redux';
 import Admin from './pages/admin/admin';
@@ -29,50 +28,58 @@ function App() {
 
   useEffect(
     () => {
-      dispatch( magazinLoadBaseFromServer() );
+      dispatch(magazinLoadBaseFromServer());
       // dispatch(magazinLoadBaseFromServer(magazinBase));
     }, []
   );
 
+  const Spiner = () => {
+    return (
+      <div className="spiner-bx">
+        <Spin tip="Loading...">
+          <Alert
+            message="Alert message title"
+            description="Further details about the context of this alert."
+            type="info"
+          />
+        </Spin>
+      </div>
+    )
+  };
+
   return (
     <>
-    {
-      isBase ? 
-      <>
-      <Routes>
-        <Route path='/' element={<LeyOut />} />
-        <Route path='/*' element={<PageNotFound />} />
-        <Route path='/404' element={<PageNotFound />} />
-        <Route path='/login' element={<AdmSingIn />} />
+      {
+        isBase ?
+          <>
+            <Routes>
+              <Route path='/' element={<Template />} />
+              <Route path='/*' element={<PageNotFound />} />
+              <Route path='/404' element={<PageNotFound />} />
+              <Route path='/login' element={<AdmSingIn />} />
 
-        <Route path='/admin' element={
-          <RequireAuth>
-            <Admin />
-          </RequireAuth>}>
-          <Route index element={<AdmIndexC />} />
-          <Route path='edit' element={<h1>Контент edit </h1>} />
-          <Route path='edit/:path' element={<AdmCMain />} />
-          <Route path='edit/:id/:path' element={<AdmCItems />} />
-        </Route>
-      </Routes>
-      </>
-      : <StartContent />
-    }
+              <Route path='/admin' element={
+                <RequireAuth>
+                  <Admin />
+                </RequireAuth>}>
+                <Route index element={<AdmIndexC />} />
+                <Route path='edit' element={<h1>Контент edit </h1>} />
+                <Route path='edit/:path' element={<AdmCMain />} />
+                <Route path='edit/:id/:path' element={<AdmCItems />} />
+              </Route>
+            </Routes>
+          </>
+          :
+          <Spiner />
 
+        // <StartContent />
+      }
 
-      { showSpiner ?
-      ReactDOM.createPortal(
-        <div className="spiner-bx">
-          <Spin tip="Loading...">
-            <Alert
-              message="Alert message title"
-              description="Further details about the context of this alert."
-              type="info"
-            />
-          </Spin>
-          </div>,
-        document.getElementById('modal')
-      ) : null
+      {showSpiner ?
+        ReactDOM.createPortal(
+          <Spiner />,
+          document.getElementById('modal')
+        ) : null
       }
 
     </>

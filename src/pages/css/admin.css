@@ -87,12 +87,14 @@
 .adm_itm_top_menu{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .adm_itm_top_menu button{margin-left: 10px;}
 
 .adm_top-menu_butbx {
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   display: flex;
   justify-content: flex-end;
   align-items: center;
