@@ -165,4 +165,6 @@ export const FBASE_URL = `https://firebasestorage.googleapis.com/v0/b${STORAGE_U
 export const API_KEY = 'AIzaSyAlwGG1B-9uOuHgQ8JsOJ-SaOBAIS6oipQ-AIzaSyAlwGG1B';
 export const SINGIN_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY.slice(0,39)}`;
 export const TOKEN_UPD_URL = `https://securetoken.googleapis.com/v1/token?key=${API_KEY.slice(0,39)}`;
-export const RUNTIME_URL = 'https://alevel-finish-base-default-rtdb.firebaseio.com/alevel/-MugREdDrupZod0sqwkQ.json';
+export const MAGAZIN_LOCATION = 'alevel/-MugREdDrupZod0sqwkQ.json';
+export const TOCKEN_TEST_LOCATION = 'user/login.json'
+export const RUNTIME_URL = 'https://alevel-finish-base-default-rtdb.firebaseio.com/';

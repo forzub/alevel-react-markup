@@ -1,17 +1,42 @@
 import { Layout } from 'antd';
 import './css/template.css';
-import { Routes, Route, } from "react-router-dom";
+import {Outlet, } from "react-router-dom";
 import HeaderBox from './common/header';
 import FooterBox from './common/footer';
-import PageCContent from './magazin/pageCContent';
-import PageCMain from './magazin/pageCMain';
+import SiderBox from '../pages/common/sider';
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 
+
+// import PageCContent from './magazin/pageCContent';
+// import PageCMain from './magazin/pageCMain';
 
 const { Header, Footer, Sider, Content } = Layout;
 
+
 const Template = () => {
 
+    const { id } = useParams();
+    const [current, setCurrent] = useState(null);
+    const handleClick = (e) => { setCurrent(e.key); }
+    
+    console.log('current', current);
+
+    useEffect(() => {
+        if (!id) {
+            setCurrent(0);
+        }
+        else {
+            setCurrent(+id);
+        }    
+    }, [id]
+    );
+
+    const menuCB = {
+        cb: handleClick,
+        active: current,
+    };
 
 
 
@@ -19,17 +44,16 @@ const Template = () => {
         <Layout>
             <Header>
                 <div className="wrapper">
-                    <HeaderBox />
+                    <HeaderBox menuCB={menuCB} />
                 </div>
             </Header>
 
             <Layout>
                 <div className="wrapper">
-                    <Routes>
-                        <Route index element={<PageCMain />} />
-                        <Route path='/:id/:path' element={<PageCContent />} />
-                        <Route path='/:id' element={<PageCContent />} />
-                    </Routes>
+                    <Sider>
+                        <SiderBox menuCB={menuCB} />
+                    </Sider>
+                    <Outlet />
                 </div>
             </Layout>
 

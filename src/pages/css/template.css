@@ -47,7 +47,7 @@
 .ant-breadcrumb,
 .ant-layout-content{
     margin: 4px 0px;
-    background: #edf0f3;
+    /* background: #edf0f3; */
     border: 2px solid #ccc;
     border-radius: 6px; 
     padding: 15px;    

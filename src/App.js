@@ -12,6 +12,10 @@ import ReactDOM from 'react-dom';
 import AdmIndexC from './pages/admin/admCIndex';
 import AdmCMain from './pages/admin/admCMain';
 import AdmCItems from './pages/admin/admCItems';
+
+import PageCContent from './pages/magazin/pageCContent';
+import PageCMain from './pages/magazin/pageCMain';
+
 import { Spin, Alert } from 'antd';
 import { useSelector } from 'react-redux';
 import StartContent from './pages/common/startContent';
@@ -53,20 +57,27 @@ function App() {
         isBase ?
           <>
             <Routes>
-              <Route path='/' element={<Template />} />
-              <Route path='/*' element={<PageNotFound />} />
-              <Route path='/404' element={<PageNotFound />} />
-              <Route path='/login' element={<AdmSingIn />} />
+              <Route path='/' element={<Template />} >
+                <Route index element={<PageCMain />} />
+                <Route path=':id/:path' element={<PageCContent />} />
+                <Route path=':id' element={<PageCMain />} />
+              </Route>
 
               <Route path='/admin' element={
                 <RequireAuth>
                   <Admin />
                 </RequireAuth>}>
+
                 <Route index element={<AdmIndexC />} />
-                <Route path='edit' element={<h1>Контент edit </h1>} />
+                <Route path='edit' element={<AdmIndexC />} />
                 <Route path='edit/:path' element={<AdmCMain />} />
                 <Route path='edit/:id/:path' element={<AdmCItems />} />
+
               </Route>
+
+              <Route path='/login' element={<AdmSingIn />} />
+              <Route path='/404' element={<PageNotFound />} />
+              <Route path='*' element={<PageNotFound />} />
             </Routes>
           </>
           :

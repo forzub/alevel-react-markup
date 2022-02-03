@@ -1,4 +1,4 @@
-// todo
+// magazin
 import { actions } from "./actions";
 import clone from 'ramda/src/clone';
 

@@ -1,7 +1,7 @@
 import { Button, Layout, Modal } from 'antd';
 import { Tabs } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FormOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { returnObjByIdFromBase } from '../../utils';
 import AdmSideMenu from '../../components/menu/admSideMenu';
@@ -10,6 +10,12 @@ import '../css/admin.css';
 import { useAuth } from '../../components/hooc/useAuth';
 import AdmInputModal from '../../components/admInputModal';
 import { admSetNewItemRoot, admSetRootId, setIsInputModalVisible } from '../../store/admin';
+
+// import AdmIndexC from './admCIndex';
+// import AdmCMain from './admCMain';
+// import AdmCItems from './admCItems';
+// import { Routes, Route, } from "react-router-dom";
+
 
 const { TabPane } = Tabs;
 const { Content, Sider } = Layout;
@@ -32,13 +38,20 @@ const Admin = () => {
   let parent = null;
   let obj = {};
 
+  // console.log(id)
+  // console.log(path)
+  // console.log(rootId)
+
+  // console.log(useParams())
+  // console.log(useLocation())
+
 
   if (id) {
     obj = returnObjByIdFromBase(catalog.base.items, +id);
     if (obj) {
       if (id === path) { parent = +id; } else { parent = obj.parent }
     } else { parent = null; }
-  }else{
+  } else {
     parent = null;
   }
 
@@ -57,89 +70,91 @@ const Admin = () => {
 
 
 
-const showInputModal = (rootTarget) => {
-  dispatch(admSetNewItemRoot(rootTarget));
-  dispatch(setIsInputModalVisible(true))
-}
+  const showInputModal = (rootTarget) => {
+    dispatch(admSetNewItemRoot(rootTarget));
+    dispatch(setIsInputModalVisible(true))
+  }
 
-function admEnterButtonClick(path, id) {
-  navigate(path);
-  dispatch(admSetRootId(+id));
-}
+  function admEnterButtonClick(path, id) {
+    navigate(path);
+    dispatch(admSetRootId(+id));
+  }
 
-const callBackFuncs = {
-  adm_enter: admEnterButtonClick,
-  adm_add: showInputModal
-}
+  const callBackFuncs = {
+    adm_enter: admEnterButtonClick,
+    adm_add: showInputModal
+  }
 
-return (
-  <>
+  return (
+    <>
 
-    <header className='adm-header'>
-      <div className="wrapper">
-        <div className="adm-top-menu">
-          <Button type='button ' onClick={() => navigate('/')}>Перейти на сайт</Button>
-          <Button type='button ' onClick={() => singout(() => navigate('/', { replace: true }))}>Log Out</Button>
+      <header className='adm-header'>
+        <div className="wrapper">
+          <div className="adm-top-menu">
+            <Button type='button ' onClick={() => navigate('/')}>Перейти на сайт</Button>
+            <Button type='button ' onClick={() => singout(() => navigate('/', { replace: true }))}>Log Out</Button>
+          </div>
         </div>
-      </div>
-    </header>
-    <Layout className='admin'>
-      <div className="wrapper">
+      </header>
+      <Layout className='admin'>
+        <div className="wrapper">
 
-        <Tabs defaultActiveKey="1"
-        // onTabClick={(key, event) => console.log('тіц', key, event)}
-        >
-          <TabPane
-            tab={<span><FormOutlined />Управление магазином</span>}
-            key="1"
+          <Tabs defaultActiveKey="1"
+          // onTabClick={(key, event) => console.log('тіц', key, event)}
           >
-            <Layout>
-              <Sider>
-                <AdmSideMenu
-                  mode="vertical"
-                  links={menu}
-                  callBackFuncs={callBackFuncs}
-                  parent={parent}
+            <TabPane
+              tab={<span><FormOutlined />Управление магазином</span>}
+              key="1"
+            >
+              <Layout>
+                <Sider>
+                  <AdmSideMenu
+                    mode="vertical"
+                    links={menu}
+                    callBackFuncs={callBackFuncs}
+                    parent={parent}
 
-                />
-              </Sider>
+                  />
+                </Sider>
 
-              <div className='content-bx'>
-                <Content>
-                  { obj ? <Outlet /> : <Navigate to='/404' /> }
-                  {/* <Outlet /> */}
-                </Content>
-              </div>
+                <div className='content-bx'>
+                  <Content>
+                    {obj ?
+                        <Outlet />
+                      : <Navigate to='/404' />}
+                    {/* <Outlet /> */}
+                  </Content>
+                </div>
 
-            </Layout>
-          </TabPane>
+              </Layout>
+            </TabPane>
 
 
-          <TabPane
-            tab={<span><ShoppingCartOutlined />Управление заказами</span>}
-            key="2"
-          >
-            <Layout>
-              <Sider>
-                Tab 2 Sider
-              </Sider>
+            <TabPane
+              tab={<span><ShoppingCartOutlined />Управление заказами</span>}
+              key="2"
+            >
+              <Layout>
+                <Sider>
+                  Tab 2 Sider
+                </Sider>
 
-              <div className='content-bx'>
-                <Content>
-                  Tab 2 Content
-                </Content>
-              </div>
+                <div className='content-bx'>
+                  <Content>
+                    Tab 2 Content
+                  </Content>
+                </div>
 
-            </Layout>
-          </TabPane>
-        </Tabs>
+              </Layout>
+            </TabPane>
+          </Tabs>
 
-      </div>
-    </Layout>
+        </div>
+      </Layout>
 
-    <AdmInputModal />
-  </>
-);
+      <AdmInputModal />
+    </>
+  );
 }
 
 export default Admin;

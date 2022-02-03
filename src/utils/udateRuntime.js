@@ -4,10 +4,10 @@ import { admSetCurrentUser } from '../store/admin';
 import { elemSpinerLoadingToggle } from '../store/elements';
 import { magazinBaseUpdate } from '../store/magazin';
 
-export const updateRuntime = (payload, dispatch, getState) => {
+export const updateRuntime = (payload, dispatch, getState, location ) => {
 
     const { idToken } = getState().admin.current_user;
-    const BASE_URL = `${RUNTIME_URL}?auth=${idToken}`;
+    const BASE_URL = `${RUNTIME_URL}${location}?auth=${idToken}`;
     
     dispatch( elemSpinerLoadingToggle() ); 
     fetch(BASE_URL, { method: 'PATCH', body: JSON.stringify(payload), })
@@ -20,15 +20,15 @@ export const updateRuntime = (payload, dispatch, getState) => {
                 dispatch( admSetCurrentUser(null) );
                 localStorage.clear();
             }
-            else { 
-              dispatch(magazinBaseUpdate(payload));
-              message.info('сохранено...');
+            else {
+                dispatch(magazinBaseUpdate(payload));
+                message.info('сохранено...');
+              
             }
         })
         .catch(err => console.log(err))
         .finally(
             dispatch( elemSpinerLoadingToggle() ) 
         );
-
 
 }

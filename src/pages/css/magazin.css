@@ -5,3 +5,10 @@ text-align: center;
 .main-space .ant-space-item{
   padding: 20px 0;
 }
+
+.ant-menu-sub.ant-menu-inline{
+background: #ccc;
+}
+.ant-menu-sub.ant-menu-inline > .ant-menu-item{
+  padding-left: 25px !important;
+}

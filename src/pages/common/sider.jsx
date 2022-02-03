@@ -1,18 +1,23 @@
+import { useSelector } from 'react-redux';
 import MyMenu from '../../components/menu/compMenu';
+import { returnObjByIdFromBase } from '../../utils';
+import { createMenusLists } from '../../utils/createMenuList';
 import '../css/siderbox.css';
 
-const links = [
-    { title: 'Главная', path: '/' },
-    { title: 'Каталог', path: '/catalog' },
-    { title: 'Контакты', path: '/contacts' },
-];
 
+const SiderBox = ({ menuCB, props }) => {
 
-const SiderBox = () => {
+    const base = useSelector(store => store.magazin.base);
+    const rootId = useSelector(store => store.element.magazin_menu_root_id);
+    const root_obj = returnObjByIdFromBase(base.items, rootId);
+
+    let links = [];
+    links = createMenusLists(root_obj.items, true);
+
 
     return (
         <>
-            <MyMenu mode="vertical" links={links} />
+            <MyMenu menuCB={menuCB} mode="vertical" links={links} mode="inline" />
         </>
     );
 }

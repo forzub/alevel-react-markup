@@ -1,27 +1,53 @@
 import SiderBox from '../common/sider';
 import { Breadcrumb, Layout } from 'antd';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { returnObjByIdFromBase } from '../../utils';
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 const PageCContent = () => {
+  const base = useSelector(store => store.magazin.base.items);
+  const { id } = useParams();
+
+  const breadcrums = [];
+  let current = null;
+  let parent = null;
+
+  current = returnObjByIdFromBase(base, +id);
+  parent = current.parent;
+
+  
+  while (parent) {
+    breadcrums.unshift({ title: current.content.title, path: current.content.path, key: `${current.id}` })
+    current = returnObjByIdFromBase(base, parent);
+    parent = current.parent;
+  } ;
+  
+  breadcrums.unshift({ title: current.content.title, path: current.content.path, key: `${current.id}`})
+  
+
+
+
 
 
   return (
     <>
-      <Sider>
-        <SiderBox />
-      </Sider>
 
       <div className='content-bx'>
         <Breadcrumb >
-          <Breadcrumb.Item>
-            <a href="">Home</a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a href="">List</a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
+
+          {breadcrums.map((el, index, array) =>
+            <Breadcrumb.Item key={`${el.key}`}>
+              {((index + 1) !== array.length) ?
+                <Link to={`/${el.key}${el.path}`} >{el.title}</Link> :
+                <>{el.title}</>
+              }
+            </Breadcrumb.Item>
+          )}
+
         </Breadcrumb>
+
 
         <Content>
 

@@ -7,8 +7,8 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const dispatch = useDispatch();
   const redux_user = useSelector(store => store.admin.current_user);
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     setUser(redux_user);

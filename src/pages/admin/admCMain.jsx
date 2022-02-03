@@ -39,14 +39,12 @@ const AdmCMain = () => {
   useEffect(() => {
     forms_fields_set();
 
-    console.log('tyt')
   },[current_obj.description, current_obj.textContent, ]);
 
 
 
 
   const onMainFormFinish = (values) => {
-    console.log('mainform', values);
 
     let content = {
       content_description : values.description,

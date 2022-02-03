@@ -21,9 +21,9 @@ const PageCMain = () => {
 
   return (
     <>
-      <Sider>
+      {/* <Sider>
         <SiderBox />
-      </Sider>
+      </Sider> */}
       <div className='content-bx'>
         <Content>
           <Typography>

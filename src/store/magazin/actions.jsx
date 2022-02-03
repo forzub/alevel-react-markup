@@ -1,10 +1,8 @@
 // magazin
 
-import { message } from "antd";
 import { updateRuntime } from "../../utils/udateRuntime";
-import { admSetCurrentUser } from "../admin";
 import { elemSpinerLoadingToggle } from "../elements";
-import { RUNTIME_URL } from '../../pages/constants';
+import { RUNTIME_URL, MAGAZIN_LOCATION } from '../../pages/constants';
 
 const actions = Object.freeze(
     {
@@ -21,8 +19,10 @@ const magazinIncCurrentId = () => ({ type: actions.MAGAZAN_INC_CURRENT_ID });
 const magazinBaseUpdate = (payload) => ({ type: actions.MAGAZIN_BASE_UPDATE, payload });
 
 const magazinLoadBaseFromServer = () => (dispatch, getState) => {
+    
     dispatch(elemSpinerLoadingToggle())
-    fetch(RUNTIME_URL)
+    
+    fetch(`${RUNTIME_URL}${MAGAZIN_LOCATION}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -31,12 +31,14 @@ const magazinLoadBaseFromServer = () => (dispatch, getState) => {
         })
         .catch(err => console.log(err))
         .finally(
+          
             dispatch(elemSpinerLoadingToggle())
+
         );
 }
 
 const magazinBase_Update = (payload) => (dispatch, getState) => {
-    updateRuntime(payload, dispatch, getState);
+    updateRuntime( payload, dispatch, getState, MAGAZIN_LOCATION );
 }
 
 export {

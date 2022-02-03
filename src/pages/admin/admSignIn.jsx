@@ -4,10 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../components/hooc/useAuth';
 import { admSetCurrentUser } from '../../store/admin';
 import '../css/signin.css';
-import { SINGIN_URL, TOKEN_UPD_URL } from '../constants';
+import { RUNTIME_URL, SINGIN_URL, TOCKEN_TEST_LOCATION, TOKEN_UPD_URL } from '../constants';
 import Paragraph from 'antd/lib/typography/Paragraph';
 import { useState, useEffect } from 'react';
 import Title from 'antd/lib/typography/Title';
+import { elemSpinerLoadingToggle } from '../../store/elements';
 
 
 
@@ -33,14 +34,36 @@ const AdmSingIn = () => {
     },
   };
 
-useEffect(()=>{
-  let myStorage = window.localStorage;
-  if (myStorage.getItem('myToken') !== null) {
-    const idToken = myStorage.getItem('myToken');
+  useEffect(() => {
+    let myStorage = window.localStorage;
+    if (myStorage.getItem('myToken') !== null) {
+      
+      const idToken = myStorage.getItem('myToken');  
 
-    singin({ expiresIn : 0, idToken: idToken, refreshToken: null }, () => navigate(fromPage), { replace: true });  
-  }
-},[]);
+      dispatch( elemSpinerLoadingToggle() );
+
+      fetch(`${RUNTIME_URL}${TOCKEN_TEST_LOCATION}?auth=${idToken}`, 
+        { method: 'PATCH', body: JSON.stringify(''), })
+          .then(res => res.json())
+          .then(data => {
+  
+            if (data.error) {
+                  message.error(data.error);
+                  message.error('время сессии истекло, необходимо перелогиниться');
+                  dispatch( admSetCurrentUser(null) );
+                  localStorage.clear();
+              }
+              else {
+                 singin({ expiresIn: 0, idToken: idToken, refreshToken: null }, () => navigate(fromPage), { replace: true });  
+              }
+          })
+          .catch(err => console.log(err))
+          .finally(
+              dispatch( elemSpinerLoadingToggle() ) 
+          );          
+    }
+  }, []);
+
 
   const updateToken = (refreshToken) => {
 
@@ -62,18 +85,18 @@ useEffect(()=>{
         return res.json();
       })
       .then(data => {
-        
-        const new_user = {
-            expiresIn : +data.expires_in,
-            idToken: data.id_token,
-            refreshToken: data.refresh_token
-          }
 
-        singin(new_user, ()=>{});
-        setTimeout( () => updateToken(refreshToken) , new_user.expiresIn * 1000);
+        const new_user = {
+          expiresIn: +data.expires_in,
+          idToken: data.id_token,
+          refreshToken: data.refresh_token
+        }
+
+        singin(new_user, () => { });
+        setTimeout(() => updateToken(refreshToken), new_user.expiresIn * 1000);
       })
       .catch(e => message.error(e))
-      
+
   }
 
 
@@ -83,7 +106,7 @@ useEffect(()=>{
 
 
 
-  
+
   const onFinish = (form_values) => {
     let myStorage = window.localStorage;
 
@@ -111,15 +134,15 @@ useEffect(()=>{
         else {
           setIsError(null);
           const { expiresIn, idToken, refreshToken } = data;
-          singin({ expiresIn : +expiresIn, idToken, refreshToken }, () => navigate(fromPage), { replace: true }); 
-          
-          setTimeout( () => updateToken(refreshToken) , +expiresIn * 1000);         
-          myStorage.setItem( 'myToken', idToken );
-          myStorage.setItem( 'expiresIn', Date.now() );
+          singin({ expiresIn: +expiresIn, idToken, refreshToken }, () => navigate(fromPage), { replace: true });
+
+          setTimeout(() => updateToken(refreshToken), +expiresIn * 1000);
+          myStorage.setItem('myToken', idToken);
+          myStorage.setItem('expiresIn', Date.now());
         }
       })
       .catch(error => { console.log('error auth ', error) })
-      .finally( setButtonSpiner(false) );
+      .finally(setButtonSpiner(false));
   };
 
 
@@ -131,7 +154,7 @@ useEffect(()=>{
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-     // autoComplete="off"
+      // autoComplete="off"
       validateMessages={validateMessages}
     >
       <Form.Item
