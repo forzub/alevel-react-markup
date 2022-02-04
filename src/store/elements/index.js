@@ -4,5 +4,6 @@ export {
   actions,
   elemSpinerLoadingToggle,
   elemSetMenuRootId,
+  elemGoodsOrder,
 } from './actions';
 

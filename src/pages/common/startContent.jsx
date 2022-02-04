@@ -1,10 +1,12 @@
 import { Image, Typography } from 'antd';
 import Title from 'antd/lib/typography/Title';
-import logo from '../../img/logo.svg';
+
 
 
 
 const StartContent = () => {
+
+  let logo = 'https://firebasestorage.googleapis.com/v0/b/alevel-finish-base.appspot.com/o/logo.svg?alt=media';
 
   return (
     <> <div className="mainpage_wrp">

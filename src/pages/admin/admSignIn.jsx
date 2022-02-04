@@ -43,7 +43,7 @@ const AdmSingIn = () => {
       dispatch( elemSpinerLoadingToggle() );
 
       fetch(`${RUNTIME_URL}${TOCKEN_TEST_LOCATION}?auth=${idToken}`, 
-        { method: 'PATCH', body: JSON.stringify(''), })
+        { method: 'PATCH', body: JSON.stringify({login: 'on'}), })
           .then(res => res.json())
           .then(data => {
   

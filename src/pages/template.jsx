@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 // import PageCContent from './magazin/pageCContent';
 // import PageCMain from './magazin/pageCMain';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Sider } = Layout;
 
 
 const Template = () => {
@@ -21,7 +21,7 @@ const Template = () => {
     const [current, setCurrent] = useState(null);
     const handleClick = (e) => { setCurrent(e.key); }
     
-    console.log('current', current);
+    // console.log('current', current);
 
     useEffect(() => {
         if (!id) {

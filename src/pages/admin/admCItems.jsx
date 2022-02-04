@@ -98,7 +98,7 @@ const AdmCItems = () => {
       content_cat_image: !cat_image ? [] : cat_image,
       content_params: !params ? [] : params,
       content_price: !price ? '0' : price,
-      content_show: !show ? true : show,
+      content_show: (show === 'undefined') ? true : show,
       content_description: description,
       content_textContent: textContent,
     }
@@ -122,9 +122,12 @@ const AdmCItems = () => {
 
   const completeDataOnFinish = (values, adm_forms_fields) => {
 
+    console.log(values)
+
     current_obj.content.description = values.description;
     current_obj.content.textContent = values.textContent;
     current_obj.content.title = values.title;
+    current_obj.content.price = values.price;
 
     current_obj.content.show = content_show;
     current_obj.content.type = content_type;
@@ -133,6 +136,7 @@ const AdmCItems = () => {
     adm_forms_fields.content_description = current_obj.content.description;
     adm_forms_fields.content_textContent = current_obj.content.textContent;
     adm_forms_fields.content_title = current_obj.content.title;
+    adm_forms_fields.content_price = current_obj.content.price;
 
     dispatch(admSetFormsFields(adm_forms_fields));
     dispatch(magazinBase_Update(base));
@@ -142,7 +146,7 @@ const AdmCItems = () => {
 
 
   const onGoodsFormFinish = (values) => {
-    console.log('GOODS', values);
+    // console.log('GOODS', values);
 
     current_obj.content.image = content_image;
     current_obj.content.params = values.params;

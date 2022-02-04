@@ -1,7 +1,6 @@
-import SiderBox from '../common/sider';
 import { Layout, Image, Typography, Space } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import '../css/magazin.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -21,9 +20,7 @@ const PageCMain = () => {
 
   return (
     <>
-      {/* <Sider>
-        <SiderBox />
-      </Sider> */}
+
       <div className='content-bx'>
         <Content>
           <Typography>

@@ -3,6 +3,9 @@ import { Breadcrumb, Layout } from 'antd';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { returnObjByIdFromBase } from '../../utils';
+import ContentPage from './contentPage';
+import ContentCat from './contentCat';
+import ContentGoods from './contentGoods';
 
 const { Content } = Layout;
 
@@ -16,7 +19,6 @@ const PageCContent = () => {
 
   current = returnObjByIdFromBase(base, +id);
   parent = current.parent;
-
   
   while (parent) {
     breadcrums.unshift({ title: current.content.title, path: current.content.path, key: `${current.id}` })
@@ -25,11 +27,9 @@ const PageCContent = () => {
   } ;
   
   breadcrums.unshift({ title: current.content.title, path: current.content.path, key: `${current.id}`})
-  
+  current = returnObjByIdFromBase(base, +id);
 
-
-
-
+  const page_type = current.content.type;
 
   return (
     <>
@@ -48,9 +48,10 @@ const PageCContent = () => {
 
         </Breadcrumb>
 
-
         <Content>
-
+              { page_type === 'page' ? <ContentPage current={current}/> : null}
+              { page_type === 'cat' ? <ContentCat current={current}/> : null}
+              { page_type === 'itm' ? <ContentGoods current={current}/> : null}
         </Content>
       </div>
 

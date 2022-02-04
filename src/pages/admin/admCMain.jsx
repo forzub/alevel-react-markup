@@ -7,13 +7,15 @@ import { magazinBase_Update } from "../../store/magazin/actions";
 import { returnObjByIdFromBase, transliterate } from "../../utils";
 import { clone } from "ramda";
 import UploadImgs from '../../components/uploadImgs';
-import logo from '../../img/logo.svg';
 import { admSetFormsFields } from "../../store/admin";
 
 
 const { TextArea } = Input;
 
 const AdmCMain = () => {
+
+  let logo = 'https://firebasestorage.googleapis.com/v0/b/alevel-finish-base.appspot.com/o/logo.svg?alt=media';
+
 
   const dispatch = useDispatch()
   const admin_fields = useSelector(store => store.admin);

@@ -23,6 +23,8 @@ const { Content, Sider } = Layout;
 
 const Admin = () => {
 
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isBaseLoaded = useSelector(store => store.magazin.isBaseLoaded);

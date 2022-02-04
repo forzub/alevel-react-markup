@@ -25,7 +25,7 @@ const magazinLoadBaseFromServer = () => (dispatch, getState) => {
     fetch(`${RUNTIME_URL}${MAGAZIN_LOCATION}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             dispatch(magazinLoadBase(data));
             dispatch(magazinSetIsBase(true));
         })
